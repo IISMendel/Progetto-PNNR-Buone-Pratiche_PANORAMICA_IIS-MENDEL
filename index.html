@@ -1,0 +1,1684 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IIS Mendel - Innovazione Educativa 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --mendel-green: #1f7a3a;
+            --mendel-green-2: #145b2b;
+            --mendel-green-light: #4ade80;
+            --mendel-gold: #fbbf24;
+            --bg: #0f172a;
+            --bg-light: #1e293b;
+            --card: #ffffff;
+            --border: #e5e7eb;
+            --text-light: #f1f5f9;
+            --text-dark: #1f2937;
+            --shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            --shadow-colored: 0 25px 50px -12px rgba(31, 122, 58, 0.3);
+            --gradient-hero: linear-gradient(135deg, var(--mendel-green) 0%, var(--mendel-green-2) 50%, #0f172a 100%);
+        }
+
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Custom Cursor */
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: var(--mendel-green-light);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.2s ease;
+        }
+
+        .cursor-follower {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            background: rgba(74, 222, 128, 0.2);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.4s ease;
+            border: 2px solid var(--mendel-green-light);
+        }
+
+        /* Particles Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--mendel-green-light);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float-particles 20s infinite linear;
+        }
+
+        @keyframes float-particles {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.1;
+            }
+            90% {
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Hero Section Enhanced */
+        .hero {
+            background: var(--gradient-hero);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(74, 222, 128, 0.3) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(251, 191, 36, 0.3) 0%, transparent 50%);
+            animation: pulse-bg 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-bg {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.7; }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--text-light), var(--mendel-green-light), var(--mendel-gold));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: slideInUp 1s ease-out, shimmer 3s ease-in-out infinite;
+            background-size: 200% 200%;
+        }
+
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1.2rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease-out 0.3s both;
+        }
+
+        .hero .institute {
+            font-size: 1.4rem;
+            color: var(--mendel-gold);
+            font-weight: 700;
+            animation: slideInUp 1s ease-out 0.6s both, glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 5px var(--mendel-gold); }
+            100% { text-shadow: 0 0 20px var(--mendel-gold), 0 0 30px var(--mendel-gold); }
+        }
+
+        /* PNRR Hero Card Enhanced */
+        .pnrr-hero-card {
+            margin-top: 2rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 1.6rem;
+            display: grid;
+            gap: 1.2rem;
+            grid-template-columns: 1fr;
+            box-shadow: 0 25px 50px -12px rgba(31, 122, 58, 0.4);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .pnrr-hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .pnrr-hero-card:hover::before {
+            left: 100%;
+        }
+
+        .pnrr-hero-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 35px 70px -12px rgba(31, 122, 58, 0.6);
+        }
+
+        .pnrr-title {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            font-weight: 900;
+            margin: 0 0 .4rem;
+            background: linear-gradient(135deg, var(--text-light), var(--mendel-green-light));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .pnrr-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--mendel-gold), #f59e0b);
+            color: #1a1a1a;
+            font-weight: 900;
+            padding: .7rem 1.1rem;
+            border-radius: 12px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pnrr-cta::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.3s ease;
+        }
+
+        .pnrr-cta:hover::before {
+            left: 100%;
+        }
+
+        .pnrr-cta:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(251, 191, 36, 0.5);
+        }
+
+        /* Team Chips Enhanced */
+        .pnrr-team {
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        .chip {
+            display: inline-block;
+            padding: .35rem .7rem;
+            margin: .2rem;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, .12);
+            border: 1px solid rgba(255, 255, 255, .25);
+            backdrop-filter: blur(6px);
+            font-weight: 800;
+            font-size: .95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chip::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, var(--mendel-green-light), transparent);
+            opacity: 0.2;
+            transition: left 0.3s ease;
+        }
+
+        .chip:hover::before {
+            left: 100%;
+        }
+
+        .chip:hover {
+            transform: translateY(-3px) scale(1.1);
+            background: rgba(74, 222, 128, 0.2);
+            border-color: var(--mendel-green-light);
+            box-shadow: 0 5px 15px rgba(74, 222, 128, 0.3);
+        }
+
+        /* Navigation Enhanced */
+        .nav-tabs {
+            background: rgba(30, 41, 59, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 2px solid var(--mendel-green);
+        }
+
+        .nav-btn {
+            background: linear-gradient(135deg, var(--mendel-green), var(--mendel-green-2));
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.3s ease;
+        }
+
+        .nav-btn:hover::before {
+            left: 100%;
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(31, 122, 58, 0.4);
+            background: linear-gradient(135deg, var(--mendel-green-light), var(--mendel-green));
+        }
+
+        .nav-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .nav-btn:hover i {
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        /* Project Cards Enhanced */
+        .project-card {
+            background: var(--card);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            overflow: hidden;
+            color: var(--text-dark);
+            transform-style: preserve-3d;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg, var(--mendel-green), var(--mendel-green-light));
+        }
+
+        .project-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(31, 122, 58, 0.05), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .project-card:hover::after {
+            left: 100%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg) scale(1.02);
+            box-shadow: 0 35px 70px -12px rgba(31, 122, 58, 0.4);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--mendel-green), var(--mendel-green-light));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover .project-icon {
+            transform: scale(1.1) rotate(10deg);
+            box-shadow: 0 10px 25px rgba(31, 122, 58, 0.3);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--mendel-green);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.3s ease;
+        }
+
+        .project-link:hover::before {
+            left: 100%;
+        }
+
+        .project-link:hover {
+            background: var(--mendel-green-2);
+            transform: translateX(10px) scale(1.05);
+            box-shadow: 0 5px 15px rgba(31, 122, 58, 0.3);
+        }
+
+        /* Stats Enhanced */
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-15px) scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(31, 122, 58, 0.4);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--mendel-green-light);
+            display: block;
+            animation: counter-glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes counter-glow {
+            0% { text-shadow: 0 0 5px var(--mendel-green-light); }
+            100% { text-shadow: 0 0 20px var(--mendel-green-light); }
+        }
+
+        /* Loading Animation */
+        .loading-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(74, 222, 128, 0.3);
+            border-top: 3px solid var(--mendel-green-light);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .projects-grid { 
+                grid-template-columns: 1fr; 
+            }
+            .nav-container { 
+                flex-direction: column; 
+                align-items: center; 
+            }
+            .cursor, .cursor-follower {
+                display: none;
+            }
+        }
+
+        /* Original styles maintained */
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+            animation: slideInUp 1s ease-out 0.9s both;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            padding: 0 2rem;
+        }
+
+        main {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 6rem;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, var(--text-light), var(--mendel-green-light));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .category {
+            margin-bottom: 4rem;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, var(--mendel-green-2), var(--mendel-green));
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            color: var(--mendel-gold);
+        }
+
+        .category-title {
+            font-size: 2rem;
+            font-weight: 800;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--mendel-green-2);
+        }
+
+        .project-description {
+            margin-bottom: 1.5rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .project-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .project-features li::before {
+            content: '✓';
+            background: var(--mendel-green);
+            color: white;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+
+        .project-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .badge {
+            background: linear-gradient(135deg, var(--mendel-green-light), var(--mendel-green));
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        footer {
+            background: var(--mendel-green-2);
+            color: var(--text-light);
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .pnrr-sub {
+            opacity: .95; 
+            margin: 0 0 .8rem;
+        }
+
+        .pnrr-team-title {
+            font-weight: 900; 
+            opacity: .95; 
+            margin-bottom: .5rem;
+        }
+
+        .pnrr-team-chips {
+            display: flex; 
+            flex-wrap: wrap; 
+            gap: .5rem; 
+            justify-content: center;
+        }
+
+        .pnrr-updates {
+            margin: 1rem auto 0;
+            max-width: 980px;
+            background: rgba(255,255,255,0.10);
+            border: 1px solid rgba(255,255,255,0.22);
+            border-radius: 14px;
+            padding: .9rem 1.1rem;
+            backdrop-filter: blur(6px);
+            text-align: center;
+        }
+
+        .pnrr-updates h3 {
+            margin: 0 0 .4rem;
+            font-size: 1.1rem;
+            font-weight: 900;
+        }
+
+        .pnrr-updates p { 
+            margin: 0; 
+        }
+
+        .pnrr-updates h3 i {
+            margin-right: .45rem;
+            vertical-align: -2px;
+            opacity: .95;
+        }
+
+        .docx-note {
+            max-width: 1080px;
+            margin: 10px auto 0;
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 12px;
+            padding: .65rem .9rem;
+            text-align: center;
+        }
+
+        .docx-note p {
+            margin: 0; 
+            font-weight: 700;
+        }
+
+        .docx-note i {
+            margin-right: .4rem;
+        }
+
+        .docx-btn {
+            display: inline-block; 
+            margin-left: .6rem;
+            padding: .35rem .7rem; 
+            border-radius: 10px;
+            background: #2ea44f; 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: 900;
+        }
+
+        .docx-btn:hover {
+            filter: brightness(1.1);
+        }
+
+        .stats-compact .stat-card {
+            padding: 1.2rem;
+        }
+
+        .stats-compact .stat-number {
+            font-size: 2rem;
+        }
+
+        .stats-compact .stat-label {
+            font-size: .95rem;
+        }
+
+        .stats-bottom {
+            margin-top: 2rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Animated Particles -->
+    <div class="particles" id="particles"></div>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="pnrr-hero-card reveal">
+                <div class="pnrr-left">
+                    <h2 class="pnrr-title">PNRR – "Per una comunità digitale"</h2>
+                    <p class="pnrr-sub">
+                        Progetto ministeriale (D.M. 66/2023) per lo sviluppo delle competenze digitali di docenti, ATA e studenti,
+                        in coerenza con i framework europei DigComp 2.2 e DigCompEdu.
+                    </p>
+                    <a class="pnrr-cta" href="https://iismendel.github.io/PNRR_pagina-progetto-e-nomi-team_IIS-MENDEL/" target="_blank" rel="noopener">Apri la pagina del progetto</a>
+                </div>
+
+                <div class="pnrr-team" aria-label="Team Buone Pratiche">
+                    <div class="pnrr-team-title">Team Buone Pratiche</div>
+                    <div class="pnrr-team-chips">
+                        <span class="chip">Clementi Elisa</span>
+                        <span class="chip">Crespi Massimiliano</span>
+                        <span class="chip">Dino Giorgio</span>
+                        <span class="chip">Pozzi Riccardo</span>
+                        <span class="chip">Rancilio Emanuela</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pnrr-updates reveal" role="note" aria-label="Aggiornamenti">
+                <h3><i class="fas fa-circle-info" aria-hidden="true"></i>Aggiornamenti</h3>
+                <p>
+                    Il portale è progettato per essere facilmente aggiornabile: è sufficiente aggiungere una nuova cartella con le risorse
+                    e inserire il relativo collegamento nella pagina principale. Ogni collega può contribuire segnalando materiali da
+                    pubblicare o eventuali errori da correggere. Grazie per la collaborazione.
+                </p>
+            </div>
+
+            <h1>IIS Mendel</h1>
+            <p class="subtitle">Innovazione Educativa 2025</p>
+            <p class="institute">Istituto d'Istruzione Superiore "G. Mendel"</p>
+
+            <div class="stats-grid reveal">
+                <div class="stat-card">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Progetti Attivi</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Studenti Coinvolti</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Digitale</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2025</span>
+                    <span class="stat-label">Vision</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <nav class="nav-tabs">
+        <div class="nav-container">
+            <a href="#cybersecurity" class="nav-btn">
+                <i class="fas fa-shield-alt"></i> Cybersecurity
+            </a>
+            <a href="#digital" class="nav-btn">
+                <i class="fas fa-laptop-code"></i> Competenze Digitali
+            </a>
+            <a href="#disciplines" class="nav-btn">
+                <i class="fas fa-book-open"></i> Progetti Disciplinari
+            </a>
+            <a href="#languages" class="nav-btn">
+                <i class="fas fa-globe"></i> Lingue Straniere
+            </a>
+            <a href="#inclusion" class="nav-btn">
+                <i class="fas fa-users"></i> Inclusione
+            </a>
+            <a href="#innovation" class="nav-btn">
+                <i class="fas fa-rocket"></i> Innovazione
+            </a>
+        </div>
+    </nav>
+
+    <div class="docx-note reveal" role="note" aria-label="Documento di presentazione HUB">
+        <p>
+            <i class="fas fa-file-pdf" aria-hidden="true"></i>
+            Il documento disponibile qui sotto descrive in sintesi i due HUB principali dell'Istituto:
+            <strong>Didattico</strong> (IIS MENDEL HUB) e <strong>Inclusione</strong> (HUB Inclusione).
+            Contiene struttura, finalità e modalità di aggiornamento/uso.
+            <a href="Descrizione_Progetto_Learning_Hub_IIS_Mendel._DEF.pdf" class="docx-btn" download>Scarica descrizione (PDF)</a>
+        </p>
+    </div>
+
+    <main>
+        <section id="cybersecurity" class="section">
+            <div class="category">
+                <div class="category-header reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h2 class="category-title">Cybersecurity & Sicurezza Digitale</h2>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🛡️</div>
+                            <h3 class="project-title">Cybersecurity IIS MENDEL</h3>
+                        </div>
+                        <p class="project-description">
+                            Piattaforma di riferimento per la sicurezza digitale della comunità scolastica.
+                        </p>
+                        <ul class="project-features">
+                            <li>Policy e buone pratiche</li>
+                            <li>Strumenti di protezione</li>
+                            <li>Risorse per docenti e studenti</li>
+                            <li>Segnalazione incidenti</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Sicurezza</span>
+                            <span class="badge">Linee guida</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Cybersicurezza_IIS-MENDEL/" class="project-link" target="_blank" rel="noopener">
+                            Vai al progetto <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">💻</div>
+                            <h3 class="project-title">Corso Cybersecurity (Hub Didattico)</h3>
+                        </div>
+                        <p class="project-description">
+                            Percorso formativo operativo con esempi, esercizi e materiali per docenti e studenti.
+                        </p>
+                        <ul class="project-features">
+                            <li>Moduli progressivi</li>
+                            <li>Esercizi pratici</li>
+                            <li>Materiali scaricabili</li>
+                            <li>Verifica finale</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Formazione</span>
+                            <span class="badge">Hands-on</span>
+                        </div>
+                        <a href="https://iismendel.github.io/cibersceurity-per-hub-didattico-MENDEL/" class="project-link" target="_blank" rel="noopener">
+                            Scopri il corso <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🤖</div>
+                            <h3 class="project-title">Vero o BOT? (Guida AI)</h3>
+                        </div>
+                        <p class="project-description">
+                            Come riconoscere testi generati da AI: guida pratica per docenti e studenti.
+                        </p>
+                        <ul class="project-features">
+                            <li>Indicatori di qualità</li>
+                            <li>Check-list operative</li>
+                            <li>Strumenti di analisi</li>
+                            <li>Esempi commentati</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">AI Literacy</span>
+                            <span class="badge">Strumenti</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Guida-all-intelligenza-artificiale-per-i-docenti-come-riconoscere-i-testi-generati-da-AI/" class="project-link" target="_blank" rel="noopener">
+                            Esplora la guida <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="digital" class="section">
+            <div class="category">
+                <div class="category-header reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h2 class="category-title">Competenze Digitali & PNRR</h2>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🧭</div>
+                            <h3 class="project-title">IIS-Mendel-Hub Didattica</h3>
+                        </div>
+                        <p class="project-description">Portale didattico dell'Istituto: hub disciplinari, risorse validate e accesso rapido ai progetti PNRR.</p>
+                        <ul class="project-features">
+                            <li>17 hub disciplinari</li>
+                            <li>Ricerca rapida per parole‑chiave</li>
+                            <li>Accesso ai progetti PNRR</li>
+                            <li>Usabile da mobile e desktop</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Hub</span>
+                            <span class="badge">PNRR</span>
+                        </div>
+                        <a href="https://iismendel.github.io/IIS-Mendel-Hub/" class="project-link" target="_blank" rel="noopener">
+                            Apri l'HUB Didattico <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🧰</div>
+                            <h3 class="project-title">Software gratuiti per studenti</h3>
+                        </div>
+                        <p class="project-description">Catalogo di applicazioni e servizi gratuiti per studio e laboratorio: schede, download e requisiti.</p>
+                        <ul class="project-features">
+                            <li>Categorie per materia e uso</li>
+                            <li>Schede con requisiti minimi</li>
+                            <li>Link ufficiali al download</li>
+                            <li>Suggerimenti dei docenti</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Strumenti</span>
+                            <span class="badge">Open</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Hub-software-gratuiti-per-studenti/" class="project-link" target="_blank" rel="noopener">
+                            Esplora il catalogo <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🎮</div>
+                            <h3 class="project-title">Gamification MENDEL</h3>
+                        </div>
+                        <p class="project-description">Attività, badge e mini‑giochi per coinvolgere gli studenti e rinforzare le competenze digitali.</p>
+                        <ul class="project-features">
+                            <li>Challenge e badge motivanti</li>
+                            <li>Mini‑giochi didattici</li>
+                            <li>Attività pronte per LIM</li>
+                            <li>Adatto anche da smartphone</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Didattica</span>
+                            <span class="badge">Engagement</span>
+                        </div>
+                        <a href="https://iismendel.github.io/gamification_Mendel/" class="project-link" target="_blank" rel="noopener">
+                            Gioca e impara <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="disciplines" class="section">
+            <div class="category">
+                <div class="category-header reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h2 class="category-title">Progetti Disciplinari (Solo alcuni esempi)</h2>
+                </div>
+
+                <div class="projects-grid">
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">📐</div>
+                            <h3 class="project-title">Matematica IIS MENDEL</h3>
+                        </div>
+                        <p class="project-description">
+                            Percorsi di approfondimento matematico con attività pratiche e digitali per sviluppare competenze logiche e scientifiche.
+                        </p>
+                        <ul class="project-features">
+                            <li>Esercizi graduati</li>
+                            <li>Mappe/formulari</li>
+                            <li>Compiti autentici</li>
+                            <li>Verifiche modello</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">STEM</span>
+                            <span class="badge">Analitico</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Matematica_IIS-MENDEL/" class="project-link">Scopri di più <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">⚗️</div>
+                            <h3 class="project-title">Chimica IIS MENDEL</h3>
+                        </div>
+                        <p class="project-description">
+                            Laboratori di chimica per un apprendimento esperienziale, collegato alle scienze agrarie e ambientali.
+                        </p>
+                        <ul class="project-features">
+                            <li>Sicurezza di laboratorio</li>
+                            <li>Schede esperimenti</li>
+                            <li>Video dimostrativi</li>
+                            <li>Quiz di verifica</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Laboratorio</span>
+                            <span class="badge">Scientific</span>
+                        </div>
+                        <a href="https://iismendel.github.io/chimica_IIS-MENDEL/" class="project-link">Approfondisci <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🏛️</div>
+                            <h3 class="project-title">Educazione Civica IIS MENDEL</h3>
+                        </div>
+                        <p class="project-description">
+                            Percorsi di cittadinanza attiva, costituzione e Agenda 2030 in chiave interdisciplinare.
+                        </p>
+                        <ul class="project-features">
+                            <li>Costituzione & diritti</li>
+                            <li>Agenda 2030</li>
+                            <li>Cittadinanza digitale</li>
+                            <li>Rubriche di valutazione</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Civico</span>
+                            <span class="badge">Trasversale</span>
+                        </div>
+                        <a href="https://iismendel.github.io/educazione-civica-IIS-MENDEL/" class="project-link">Vai al progetto <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">📖</div>
+                            <h3 class="project-title">Italiano e Storia IIS MENDEL</h3>
+                        </div>
+                        <p class="project-description">
+                            Iniziative culturali e didattiche per valorizzare il patrimonio letterario e storico in chiave digitale e partecipativa.
+                        </p>
+                        <ul class="project-features">
+                            <li>Schede autore/periodo</li>
+                            <li>Analisi testi</li>
+                            <li>Linee del tempo</li>
+                            <li>Prove tipo esame</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Culturale</span>
+                            <span class="badge">Storico</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Italiano-e-storia_IIS-MENDEL/" class="project-link">Esplora <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🌱</div>
+                            <h3 class="project-title">Ambiente e Sostenibilità IIS MENDEL</h3>
+                        </div>
+                        <p class="project-description">
+                            Progetti legati all'Agenda 2030, biodiversità e pratiche agricole sostenibili.
+                        </p>
+                        <ul class="project-features">
+                            <li>Biodiversità & suolo</li>
+                            <li>Risorse idriche</li>
+                            <li>Energia & emissioni</li>
+                            <li>Buone pratiche agrarie</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Green</span>
+                            <span class="badge">Agenda 2030</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Ambiente-e-sostenibilit-/" class="project-link">Scopri i progetti <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🌍</div>
+                            <h3 class="project-title">CLIL IIS MENDEL</h3>
+                        </div>
+                        <p class="project-description">
+                            Apprendimento integrato di contenuti disciplinari e lingua straniera (Content and Language Integrated Learning).
+                        </p>
+                        <ul class="project-features">
+                            <li>Unità CLIL pronte</li>
+                            <li>Glossari tecnici</li>
+                            <li>Rubriche & compiti</li>
+                            <li>Valutazione formativa</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">CLIL</span>
+                            <span class="badge">Internazionale</span>
+                        </div>
+                        <a href="https://iismendel.github.io/CLIL_IIS-MENDEL/" class="project-link">Consulta le attività <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">⚙️</div>
+                            <h3 class="project-title">PV IIS MENDEL</h3>
+                        </div>
+                        <p class="project-description">
+                            Progetti tecnico-professionali in ambito Produzioni Vegetali con applicazioni pratiche e innovative.
+                        </p>
+                        <ul class="project-features">
+                            <li>Colture & tecniche</li>
+                            <li>Fitopatologia</li>
+                            <li>Sistemi irrigui</li>
+                            <li>Progetti in serra</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Agraria</span>
+                            <span class="badge">Professionale</span>
+                        </div>
+                        <a href="https://iismendel.github.io/PV_IIS-MENDEL/" class="project-link">Visita il progetto <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="languages" class="section">
+            <div class="category">
+                <div class="category-header reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h2 class="category-title">Competenze Linguistiche Internazionali</h2>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🇮🇪</div>
+                            <h3 class="project-title">Stage Linguistico in Irlanda</h3>
+                        </div>
+                        <p class="project-description">
+                            Progetto di mobilità linguistica a Malahide (Dublino) con attività culturali e laboratori immersivi per studenti dell'Istituto.
+                        </p>
+                        <ul class="project-features">
+                            <li>Esperienza full immersion in Irlanda</li>
+                            <li>Lezioni di lingua con docenti madrelingua</li>
+                            <li>Visite guidate e attività culturali</li>
+                            <li>Supporto e materiali per studenti</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Internazionale</span>
+                            <span class="badge">Lingue</span>
+                            <span class="badge">Mobilità</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Stage-Irlanda_IIS-MENDEL/" class="project-link" target="_blank" rel="noopener">
+                           Scopri il progetto <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🎬</div>
+                            <h3 class="project-title">Learning English Through Movies & Songs</h3>
+                        </div>
+                        <p class="project-description">
+                            Approccio innovativo all'apprendimento dell'inglese attraverso contenuti multimediali autentici e coinvolgenti.
+                        </p>
+                        <ul class="project-features">
+                            <li>Analisi linguistica di film e canzoni</li>
+                            <li>Sottotitoli interattivi e esercizi</li>
+                            <li>Apprendimento culturale autentico</li>
+                            <li>Pronuncia e intonazione naturale</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Multimediale</span>
+                            <span class="badge">Autentico</span>
+                            <span class="badge">Culturale</span>
+                        </div>
+                        <a href="https://iismendel.github.io/movies-and-songs_iis-mendel/" class="project-link">Inizia a imparare <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🎓</div>
+                            <h3 class="project-title">Certificazioni Cambridge</h3>
+                        </div>
+                        <p class="project-description">
+                            Preparazione completa per le certificazioni Cambridge English con corsi strutturati e simulazioni d'esame.
+                        </p>
+                        <ul class="project-features">
+                            <li>Corsi per tutti i livelli (A1-C2)</li>
+                            <li>Mock tests e simulazioni</li>
+                            <li>Docenti certificati Cambridge</li>
+                            <li>Supporto personalizzato</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Cambridge</span>
+                            <span class="badge">Certificato</span>
+                            <span class="badge">Internazionale</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Cambridge_IIS-MENDEL/" class="project-link">Prenota il tuo esame <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="inclusion" class="section">
+            <div class="category">
+                <div class="category-header reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h2 class="category-title">Inclusione & Cittadinanza</h2>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🤝</div>
+                            <h3 class="project-title">HUB INCLUSIONE</h3>
+                        </div>
+                        <p class="project-description">
+                            Centro di risorse e supporto per l'inclusione di studenti con bisogni educativi speciali e diversità.
+                        </p>
+                        <ul class="project-features">
+                            <li>Strumenti compensativi digitali</li>
+                            <li>Formazione docenti su BES e DSA</li>
+                            <li>Rete di supporto famiglie</li>
+                            <li>Progetti di peer tutoring</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Inclusivo</span>
+                            <span class="badge">Supporto</span>
+                            <span class="badge">Community</span>
+                        </div>
+                        <a href="https://iis-mendel-hub-inclusione.netlify.app/" class="project-link">Scopri i servizi <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🏛️</div>
+                            <h3 class="project-title">Educazione Civica IIS MENDEL</h3>
+                        </div>
+                        <p class="project-description">
+                            Percorso trasversale di educazione civica digitale e cittadinanza attiva per formare cittadini consapevoli.
+                        </p>
+                        <ul class="project-features">
+                            <li>Costituzione e diritti digitali</li>
+                            <li>Sviluppo sostenibile e Agenda 2030</li>
+                            <li>Cittadinanza digitale responsabile</li>
+                            <li>Progetti di service learning</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Civico</span>
+                            <span class="badge">Trasversale</span>
+                            <span class="badge">Sostenibile</span>
+                        </div>
+                        <a href="https://iismendel.github.io/educazione-civica-IIS-MENDEL/" class="project-link">Diventa cittadino attivo <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="innovation" class="section">
+            <div class="category">
+                <div class="category-header reveal">
+                    <div class="category-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h2 class="category-title">Innovazione & Futuro</h2>
+                </div>
+                
+                <div class="projects-grid">
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🏢</div>
+                            <h3 class="project-title">Calendario PCTO MENDEL</h3>
+                        </div>
+                        <p class="project-description">
+                            Sistema integrato per la gestione dei Percorsi per le Competenze Trasversali e l'Orientamento con aziende partner.
+                        </p>
+                        <ul class="project-features">
+                            <li>Partnership con aziende innovative</li>
+                            <li>Progetti reali in contesti professionali</li>
+                            <li>Mentorship aziendale</li>
+                            <li>Orientamento post-diploma</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">PCTO</span>
+                            <span class="badge">Aziendale</span>
+                            <span class="badge">Orientativo</span>
+                        </div>
+                        <a href="https://iismendel.github.io/calendario-PCTO_MENDEL/" class="project-link">Scopri le opportunità <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🎪</div>
+                            <h3 class="project-title">Fiera Villa Cortese 2025</h3>
+                        </div>
+                        <p class="project-description">
+                            Partecipazione attiva alla fiera locale con progetti innovativi e showcase delle competenze studentesche.
+                        </p>
+                        <ul class="project-features">
+                            <li>Stand interattivo con tecnologie</li>
+                            <li>Dimostrazioni dal vivo</li>
+                            <li>Networking con territorio</li>
+                            <li>Promozione dell'offerta formativa</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Territoriale</span>
+                            <span class="badge">Showcase</span>
+                            <span class="badge">Interattivo</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Fiera-Villa-Cortese-2025/" class="project-link">Partecipa alla fiera <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">📱</div>
+                            <h3 class="project-title">Riforma Valditara Cellulari</h3>
+                        </div>
+                        <p class="project-description">
+                            Implementazione innovativa delle nuove normative sull'uso degli smartphone a scuola con approccio educativo.
+                        </p>
+                        <ul class="project-features">
+                            <li>Policy d'uso responsabile</li>
+                            <li>Educazione all'uso consapevole</li>
+                            <li>Integrazione didattica controllata</li>
+                            <li>Monitoraggio e supporto</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Policy</span>
+                            <span class="badge">Educativo</span>
+                            <span class="badge">Responsabile</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Riforma-Valditara-cellulari/" class="project-link">Leggi le linee guida <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">🗺️</div>
+                            <h3 class="project-title">Piano Attività 25/26</h3>
+                        </div>
+                        <p class="project-description">
+                            Roadmap strategica per l'anno scolastico 2025/26 con obiettivi ambiziosi e progetti all'avanguardia.
+                        </p>
+                        <ul class="project-features">
+                            <li>Vision e obiettivi strategici</li>
+                            <li>Timeline progetti innovativi</li>
+                            <li>Indicatori di performance</li>
+                            <li>Monitoraggio continuo</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Strategico</span>
+                            <span class="badge">Vision</span>
+                            <span class="badge">2025/26</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Piano-attivit--_iismendel-_25_26/" class="project-link">Scopri il piano <i class="fas fa-arrow-right"></i></a>
+                    </div>
+
+                    <div class="project-card reveal">
+                        <div class="project-header">
+                            <div class="project-icon">📖</div>
+                            <h3 class="project-title">Guida Sito IIS MENDEL</h3>
+                        </div>
+                        <p class="project-description">
+                            Documentazione completa e user-friendly per navigare efficacemente nel nuovo ecosistema digitale dell'istituto.
+                        </p>
+                        <ul class="project-features">
+                            <li>Tutorial interattivi</li>
+                            <li>FAQ dinamiche</li>
+                            <li>Video guide passo-passo</li>
+                            <li>Support helpdesk</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Guida</span>
+                            <span class="badge">User-Friendly</span>
+                            <span class="badge">Support</span>
+                        </div>
+                        <a href="https://iismendel.github.io/guida-sito_IIS-MENDEL/" class="project-link">Accedi alla guida <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section stats-bottom">
+            <div class="stats-grid stats-compact reveal">
+                <div class="stat-card">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Progetti Attivi</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Studenti Coinvolti</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Digitale</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2025</span>
+                    <span class="stat-label">Vision</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <h3>IIS "G. Mendel"</h3>
+        <p>Progetto PNRR – "Per una comunità digitale"</p>
+        <p>© 2025 – Pagina realizzata dal Team Buone Pratiche dell'IIS Mendel</p>
+    </footer>
+
+    <script>
+        // Loading Animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loadingOverlay').classList.add('hidden');
+            }, 1500);
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorFollower = document.getElementById('cursorFollower');
+
+        if (window.innerWidth > 768) {
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+                
+                setTimeout(() => {
+                    cursorFollower.style.left = e.clientX + 'px';
+                    cursorFollower.style.top = e.clientY + 'px';
+                }, 100);
+            });
+
+            // Cursor effects on hover
+            const interactiveElements = document.querySelectorAll('a, button, .project-card, .nav-btn');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(1.5)';
+                    cursorFollower.style.transform = 'scale(1.5)';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    cursorFollower.style.transform = 'scale(1)';
+                });
+            });
+        }
+
+        // Animated Particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = particle.style.height = Math.random() * 4 + 1 + 'px';
+                particle.style.animationDuration = Math.random() * 20 + 10 + 's';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+        createParticles();
+
+        // Reveal Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('revealed');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(btn.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Enhanced scroll effects
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = scrolled * 0.5;
+            
+            // Parallax effect for hero
+            const hero = document.querySelector('.hero');
+            if (hero) {
+                hero.style.transform = `translateY(${parallax}px)`;
+            }
+        });
+
+        // Counter animation for stats
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                const suffix = element.textContent.includes('+') ? '+' : 
+                              element.textContent.includes('%') ? '%' : '';
+                element.textContent = Math.floor(current) + suffix;
+            }, 20);
+        }
+
+        // Start counter animations when stats are visible
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.stat-number');
+                    numbers.forEach(num => {
+                        const originalText = num.textContent;
+                        const target = parseInt(originalText);
+                        if (!isNaN(target)) {
+                            animateCounter(num, target);
+                        }
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsGrid = document.querySelector('.stats-grid');
+        if (statsGrid) {
+            statsObserver.observe(statsGrid);
+        }
+
+        // Enhanced hover effects for project cards
+        document.querySelectorAll('.project-card').forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const rotateX = (y - centerY) / 10;
+                const rotateY = (centerX - x) / 10;
+                
+                card.style.transform = `translateY(-15px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0) rotateX(0) rotateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
