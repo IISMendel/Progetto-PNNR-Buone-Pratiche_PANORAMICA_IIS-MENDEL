@@ -550,6 +550,12 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            /* Disabilita la barra sticky su mobile */
+            .nav-tabs {
+                position: static;
+                padding: 1.5rem 0;
+            }
+            
             .projects-grid { 
                 grid-template-columns: 1fr; 
             }
@@ -559,6 +565,22 @@
             }
             .cursor, .cursor-follower {
                 display: none;
+            }
+            
+            /* Migliora l'esperienza mobile */
+            .nav-btn {
+                margin: 0.25rem;
+                padding: 0.75rem 1.5rem;
+                font-size: 0.9rem;
+            }
+            
+            .hero-content {
+                padding: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
             }
         }
 
