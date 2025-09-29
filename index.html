@@ -356,7 +356,7 @@
             transform: scale(1.2) rotate(10deg);
         }
 
-        /* Project Cards Enhanced - MODIFICATI PER ESSERE PIÙ RILASSANTI */
+        /* Project Cards Enhanced */
         .project-card {
             background: var(--card);
             border-radius: 20px;
@@ -394,13 +394,11 @@
             left: 100%;
         }
 
-        /* Effetto hover più rilassante - solo leggero ingrandimento e ombra */
         .project-card:hover {
             transform: translateY(-8px) scale(1.03);
             box-shadow: 0 20px 40px -12px rgba(31, 122, 58, 0.3);
         }
 
-        /* Effetto al click - ancora più delicato */
         .project-card:active {
             transform: translateY(-5px) scale(1.01);
             transition: all 0.1s ease;
@@ -557,7 +555,6 @@
 
         /* Responsive */
         @media (max-width: 768px) {
-            /* Disabilita la barra sticky su mobile */
             .nav-tabs {
                 position: static;
                 padding: 1.5rem 0;
@@ -574,7 +571,6 @@
                 display: none;
             }
             
-            /* Migliora l'esperienza mobile */
             .nav-btn {
                 margin: 0.25rem;
                 padding: 0.75rem 1.5rem;
@@ -1104,6 +1100,73 @@
                             Gioca e impara <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
+
+                    <!-- NUOVE CARD AGGIUNTE -->
+                    <div class="project-card reveal" onclick="window.open('https://iismendel.github.io/Guida-CANVA-for-Eudcation_IIS-MENDEL/', '_blank');">
+                        <div class="project-header">
+                            <div class="project-icon">🎨</div>
+                            <h3 class="project-title">Guida CANVA for Education</h3>
+                        </div>
+                        <p class="project-description">Manuale completo per utilizzare Canva for Education: strumento gratuito per creare presentazioni, infografiche e materiali didattici professionali.</p>
+                        <ul class="project-features">
+                            <li>Tutorial passo-passo</li>
+                            <li>Template pronti per la didattica</li>
+                            <li>Collaborazione in tempo reale</li>
+                            <li>Accesso gratuito per scuole</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Canva</span>
+                            <span class="badge">Design</span>
+                            <span class="badge">Education</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Guida-CANVA-for-Eudcation_IIS-MENDEL/" class="project-link" target="_blank" rel="noopener">
+                            Scopri la guida <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="project-card reveal" onclick="window.open('https://iismendel.github.io/Canva-for-insegnants_guida-base-per-presentazioni_IIS-MENDEL/', '_blank');">
+                        <div class="project-header">
+                            <div class="project-icon">📊</div>
+                            <h3 class="project-title">Canva per Insegnanti - Presentazioni</h3>
+                        </div>
+                        <p class="project-description">Guida base dedicata ai docenti per creare presentazioni efficaci e coinvolgenti con Canva: dalla teoria alla pratica.</p>
+                        <ul class="project-features">
+                            <li>Principi di design per la didattica</li>
+                            <li>Esempi di presentazioni efficaci</li>
+                            <li>Trucchi e shortcuts</li>
+                            <li>Best practices per l'insegnamento</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Docenti</span>
+                            <span class="badge">Presentazioni</span>
+                            <span class="badge">Pratico</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Canva-for-insegnants_guida-base-per-presentazioni_IIS-MENDEL/" class="project-link" target="_blank" rel="noopener">
+                            Crea presentazioni <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+
+                    <div class="project-card reveal" onclick="window.open('https://iismendel.github.io/Guida-PADLET_IIS-MENDEL/', '_blank');">
+                        <div class="project-header">
+                            <div class="project-icon">📋</div>
+                            <h3 class="project-title">Guida PADLET</h3>
+                        </div>
+                        <p class="project-description">Manuale operativo per Padlet: bacheca digitale collaborativa per brainstorming, raccolta idee e progetti di classe interattivi.</p>
+                        <ul class="project-features">
+                            <li>Creazione di bacheche collaborative</li>
+                            <li>Diversi formati e layout</li>
+                            <li>Condivisione e moderazione</li>
+                            <li>Integrazione con altre piattaforme</li>
+                        </ul>
+                        <div class="project-badges">
+                            <span class="badge">Collaborazione</span>
+                            <span class="badge">Interattivo</span>
+                            <span class="badge">Cloud</span>
+                        </div>
+                        <a href="https://iismendel.github.io/Guida-PADLET_IIS-MENDEL/" class="project-link" target="_blank" rel="noopener">
+                            Esplora Padlet <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1409,7 +1472,7 @@
                     <h3 class="project-title">Insegnare Italiano L2</h3>
                 </div>
                 <p class="project-description">
-                    Risorse e strumenti per supportare l’insegnamento dell’italiano come seconda lingua,
+                    Risorse e strumenti per supportare l'insegnamento dell'italiano come seconda lingua,
                     con particolare attenzione agli studenti di recente immigrazione.
                 </p>
                 <ul class="project-features">
@@ -1442,7 +1505,6 @@
                 
                 <div class="projects-grid">
 
-            <!-- CARD PTOF 4.0 (AGGIORNATA CON NUOVO LINK) -->
             <div class="project-card reveal" onclick="window.open('https://iismendel.github.io/PTOF_4.0_IIS-MENDEL/', '_blank');">
                 <div class="project-header">
                     <div class="project-icon">📘</div>
@@ -1460,7 +1522,6 @@
                     Apri la pagina PTOF <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
-
 
                     <div class="project-card reveal" onclick="window.open('https://iismendel.github.io/calendario-PCTO_MENDEL/', '_blank');">
                         <div class="project-header">
@@ -1650,7 +1711,6 @@
                 }, 100);
             });
 
-            // Cursor effects on hover
             const interactiveElements = document.querySelectorAll('a, button, .project-card, .nav-btn');
             interactiveElements.forEach(el => {
                 el.addEventListener('mouseenter', () => {
@@ -1713,7 +1773,6 @@
             const scrolled = window.pageYOffset;
             const parallax = scrolled * 0.5;
             
-            // Parallax effect for hero
             const hero = document.querySelector('.hero');
             if (hero) {
                 hero.style.transform = `translateY(${parallax}px)`;
@@ -1736,7 +1795,6 @@
             }, 20);
         }
 
-        // Start counter animations when stats are visible
         const statsObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -1757,9 +1815,6 @@
         if (statsGrid) {
             statsObserver.observe(statsGrid);
         }
-
-        // RIMOSSI GLI EFFETTI MOUSEMOVE TROPPO INVASIVI - ORA PIÙ RILASSANTI
-        // Gli effetti delle card sono ora solo basati su :hover CSS più delicati
     </script>
 </body>
 </html>
